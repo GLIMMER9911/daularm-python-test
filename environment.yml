@@ -1,0 +1,14 @@
+name: dualarm-control
+
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python>=3.10
+  - numpy
+  - scipy
+  - matplotlib
+  - mujoco
+  - pinocchio
+  - jupyter
