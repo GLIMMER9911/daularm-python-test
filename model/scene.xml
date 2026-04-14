@@ -7,7 +7,7 @@
   <visual>
     <headlight diffuse="0.6 0.6 0.6" ambient="0.3 0.3 0.3" specular="0 0 0"/>
     <rgba haze="0.15 0.25 0.35 1"/>
-    <global azimuth="-120" elevation="-20"/>
+    <global azimuth="-120" elevation="-20"/>l
   </visual>
 
   <asset>
@@ -20,6 +20,10 @@
   <worldbody>
     <light pos="0 0 1.5" dir="0 0 -1" directional="true"/>
     <geom name="floor" size="0 0 0.05" type="plane" material="groundplane"/>
+    <body name="box" pos="0.5 0 0.1">
+      <freejoint name="free_joint"/>
+      <geom type="box" size="0.15 0.2 0.1" rgba="1 1 1 1" mass="1" friction="1 0.1 0.1"/>
+    </body>
   </worldbody>
 
 </mujoco>

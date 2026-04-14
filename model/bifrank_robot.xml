@@ -30,7 +30,8 @@
     <material class="franka" name="dark_gray" rgba="0.7 0.7 0.7 1"/>
     <material class="franka" name="light_blue" rgba="0.3 0.3 0.3 1"/>
 
-
+    <mesh name="base_collision" content_type="model/stl" file="./collision/base.stl" />
+    <mesh name="base_visual" content_type="model/obj" file="./visual/base.obj" />
     <mesh name="link0_collision" content_type="model/stl" file="./collision/link0.stl" />
     <mesh name="link0_visual" content_type="model/obj" file="./visual/link0.obj" />
     <mesh name="link1_collision" content_type="model/stl" file="./collision/link1.stl" />
@@ -60,6 +61,8 @@
         <joint name="base_joint" axis="0 0 1" limited="true" range="-1.57 1.57" actuatorfrcrange="-10 10" damping="40" />
         <geom name="base_visual" type="box" size="0.25 0.25 0.05" material="red" class="visualgeom" pos="0 0.0 0.05" />
         <geom type="box" size="0.25 0.25 0.05" material="red" class="collision" pos="0 0.0 0.05" />
+        <geom name="base_mount_collision" mesh="base_collision" class="collision" pos="0 0.0 0.1" />
+        <geom name="base_mount_visual" mesh="base_visual" class="visualgeom" pos="-0.0 0.0 0.10" />
         <geom name="lewis_fr3_link0_visual" pos="0 0.1 0.2" mesh="link0_visual" class="visualgeom" quat="0.897282 -0.426082 0.111826 -0.02887"/>
         <geom name="lewis_fr3_link0_collision" pos="0 0.1 0.2" mesh="link0_visual" class="collision" quat="0.897282 -0.426082 0.111826 -0.02887"/>
         <geom name="richard_fr3_link0_visual" pos="0 -0.1 0.2" mesh="link0_visual" class="visualgeom" quat="0.897282 0.426082 0.111826 0.02887"/>
@@ -101,6 +104,58 @@
                       <joint name="lewis_fr3_joint7" pos="0 0 0" axis="0 0 1" range="-3.0159 3.0159" actuatorfrcrange="-12 12" damping="0.003" frictionloss="0.2" />
                       <geom name="lewis_fr3_link7_visual" mesh="link7_visual" class="visualgeom" />
                       <geom name="lewis_fr3_link7_collision" mesh="link7_collision" class="collision" />
+                      <site name="lewis_ft_site" pos="0 0 0.1" size="0.01"/>
+                      <geom name="lewis_pad_p1"
+                            type="sphere"
+                            size="0.006"
+                            pos="0.025  0.025  0.11"
+                            rgba="1 0 0 1"
+                            friction="2.0 0.1 0.01"
+                            condim="4"
+                            contype="1"
+                            conaffinity="1"
+                            solref="0.005 1"
+                            solimp="0.9 0.95 0.001"/>
+                      <geom name="lewis_pad_p2"
+                            type="sphere"
+                            size="0.006"
+                            pos="0.025 -0.025  0.11"
+                            rgba="0 1 0 1"
+                            friction="2.0 0.1 0.01"
+                            condim="4"
+                            contype="1"
+                            conaffinity="1"
+                            solref="0.005 1"
+                            solimp="0.9 0.95 0.001"/>
+                      <geom name="lewis_pad_p3"
+                            type="sphere"
+                            size="0.006"
+                            pos="-0.025  0.025  0.11"
+                            rgba="0 0 1 1"
+                            friction="2.0 0.1 0.01"
+                            condim="4"
+                            contype="1"
+                            conaffinity="1"
+                            solref="0.005 1"
+                            solimp="0.9 0.95 0.001"/>
+                      <geom name="lewis_pad_p4"
+                            type="sphere"
+                            size="0.006"
+                            pos="-0.025 -0.025 0.11"
+                            rgba="1 1 0 1"
+                            friction="2.0 0.1 0.01"
+                            condim="4"
+                            contype="1"
+                            conaffinity="1"
+                            solref="0.005 1"
+                            solimp="0.9 0.95 0.001"/>
+                    <!-- </body> -->
+                        <!-- Payload
+                        <body name="lewis_payload" pos="0 0 0.1">
+                            <inertial pos="0 0 0" mass="0.5"
+                                      diaginertia="0.001 0.001 0.001"/>
+                            <geom type="sphere" size="0.03" rgba="1 0 0 1"/> -->
+                        <!-- </body> -->
                     </body>
                   </body>
                 </body>
@@ -108,7 +163,6 @@
             </body>
           </body>
         </body>
-        <!-- <body name="richard_fr3_link1" pos="0.0750187 -0.352472 0.403762" quat="0.897282 0.426082 0.111826 0.02887"> -->
         <body name="richard_fr3_link1" pos="0.0750187 -0.352472 0.403762" quat="0.897282 0.426082 0.111826 0.02887">
           <inertial pos="4.128e-07 -0.0181251 -0.0386036" quat="0.998098 -0.0605364 0.00380499 0.0110109" mass="2.92747" diaginertia="0.0239286 0.0227246 0.00610634" />
           <joint name="richard_fr3_joint1" pos="0 0 0" axis="0 0 1" range="-2.7437 2.7437" actuatorfrcrange="-87 87" damping="0.003" frictionloss="0.2" />
@@ -146,6 +200,58 @@
                       <geom type="mesh" rgba="" mesh="link7_visual" />
                       <geom name="richard_fr3_link7_collision" type="mesh" mesh="link7_collision"  class="collision" />
                       <geom type="mesh" rgba="" mesh="link7_collision" />
+                      <site name="richard_ft_site" pos="0 0 0.1" size="0.01"/>
+                        <!-- Payload -->
+                        <!-- <body name="richard_payload" pos="0 0 0.1">
+                            <inertial pos="0 0 0" mass="0.5"
+                                      diaginertia="0.001 0.001 0.001"/>
+                            <geom type="sphere" size="0.03" rgba="1 0 0 1"/> -->
+                        <!-- </body> -->
+                      <geom name="richard_pad_p1"
+                            type="sphere"
+                            size="0.006"
+                            pos="0.025  0.025  0.11"
+                            rgba="1 0 0 1"
+                            friction="2.0 0.1 0.01"
+                            condim="4"
+                            contype="1"
+                            conaffinity="1"
+                            solref="0.005 1"
+                            solimp="0.9 0.95 0.001"/>
+                      <geom name="richard_pad_p2"
+                            type="sphere"
+                            size="0.006"
+                            pos="0.025 -0.025  0.11"
+                            rgba="0 1 0 1"
+                            friction="2.0 0.1 0.01"
+                            condim="4"
+                            contype="1"
+                            conaffinity="1"
+                            solref="0.005 1"
+                            solimp="0.9 0.95 0.001"/>
+                      <geom name="richard_pad_p3"
+                            type="sphere"
+                            size="0.006"
+                            pos="-0.025  0.025  0.11"
+                            rgba="0 0 1 1"
+                            friction="2.0 0.1 0.01"
+                            condim="4"
+                            contype="1"
+                            conaffinity="1"
+                            solref="0.005 1"
+                            solimp="0.9 0.95 0.001"/>
+                      <geom name="richard_pad_p4"
+                            type="sphere"
+                            size="0.006"
+                            pos="-0.025 -0.025 0.11"
+                            rgba="1 1 0 1"
+                            friction="2.0 0.1 0.01"
+                            condim="4"
+                            contype="1"
+                            conaffinity="1"
+                            solref="0.005 1"
+                            solimp="0.9 0.95 0.001"/>
+                      <!-- </body> -->
                     </body>
                   </body>
                 </body>
@@ -223,6 +329,10 @@
     <actuatorfrc name="richard_fr3_joint7_f" actuator="richard_fr3_joint7" noise="0.001" />
     <!-- <framequat name="orientation" objtype="site" noise="0.001" objname="imu" /> -->
     <!-- <gyro name="angular-velocity" site="imu" noise="0.005" cutoff="34.9" /> -->
+    <force name="lewis_ee_force" site="lewis_ft_site"/>
+    <torque name="lewis_ee_torque" site="lewis_ft_site"/>
+    <force name="richard_ee_force" site="richard_ft_site"/>
+    <torque name="richard_ee_torque" site="richard_ft_site"/>
   </sensor>
 
   <contact>
